@@ -8,27 +8,56 @@
 import SwiftUI
 import SwiftData
 
-struct RestourantView: View {
+struct RestaurantsViewWithSorting: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var restaurants: [Restaurant] = []
+    @State private var sortOrder = SortDescriptor(\Restaurant.name)
+    @State var selectedSortOption: SortOption = .name
     var body: some View {
         NavigationView {
-            restaurantView
-                .navigationBarTitle("Foodie")
-                .toolbar {
-                    ToolbarItem {
-                        NavigationLink {
-                            AddRestaurantBuilder().buildForAdd(modelContext: modelContext)
-                        } label: {
-                            Label("Add Item", systemImage: "plus")
+            VStack(alignment: .leading) {
+                Text("Sort By:")
+                    .padding(.vertical, 5)
+                    .padding(.horizontal, 16)
+                HStack(spacing: 5) {
+                    ForEach(SortOption.allCases, id: \.rawValue) { item in
+                        SortOptionPill(sortOption: item, selectedSortOption: $selectedSortOption) {
+                            self.sortOrder = item.sortDescriptor
                         }
                     }
                 }
+                .padding(.horizontal, 16)
+                Spacer()
+                RestourantView(sort: sortOrder)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                Spacer()
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("Foodie")
+            .toolbar {
+                ToolbarItem {
+                    NavigationLink {
+                        AddRestaurantBuilder().buildForAdd(modelContext: modelContext)
+                    } label: {
+                        Label("Add Item", systemImage: "plus")
+                    }
+                }
+            }
         }
     }
+}
+
+struct RestourantView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var restaurants: [Restaurant]
     
+    init(sort: SortDescriptor<Restaurant>) {
+        _restaurants = Query(sort: [sort], animation: .easeInOut)
+    }
+    var body: some View {
+        restaurantView
+    }
     private var restaurantView: some View {
-        ZStack {
+        VStack(alignment: .center) {
             if self.restaurants.count > 0 {
                 restaurantListView
             } else {
@@ -93,9 +122,3 @@ struct ProcessRestourantView: View {
         }
     }
 }
-
-
-//#Preview {
-//    RestourantView(viewModel: RestaurantVM())
-//        .modelContainer(for: Restaurant.self, inMemory: true)
-//}

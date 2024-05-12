@@ -18,5 +18,6 @@ class ReviewVM : ObservableObject {
     func addReview(rating: Int, date: Date, notes: String) {
         let child = Review(stars: rating, date: date, notes: notes)
         self.restaurant.reviews.append(child)
+        self.restaurant.updatedAt = Date()
     }
 }

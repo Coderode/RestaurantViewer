@@ -9,7 +9,8 @@ import Foundation
 import SwiftData
 
 @Model
-final class Review : Hashable {
+final class Review : Hashable, Identifiable {
+    @Attribute(.unique) var id = UUID()
     var stars: Int
     var date: Date
     var notes: String

@@ -31,6 +31,7 @@
 		9AEE27A72BF0FA6A00F8D6C0 /* ReviewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE27A62BF0FA6A00F8D6C0 /* ReviewBuilder.swift */; };
 		9AEE27AA2BF0FAE800F8D6C0 /* AddRestaurantVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE27A92BF0FAE800F8D6C0 /* AddRestaurantVM.swift */; };
 		9AEE27AC2BF0FCDC00F8D6C0 /* AddRestaurantBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE27AB2BF0FCDC00F8D6C0 /* AddRestaurantBuilder.swift */; };
+		9AEE27B22BF11E7D00F8D6C0 /* SortOptionPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE27B12BF11E7D00F8D6C0 /* SortOptionPill.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		9AEE27A62BF0FA6A00F8D6C0 /* ReviewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewBuilder.swift; sourceTree = "<group>"; };
 		9AEE27A92BF0FAE800F8D6C0 /* AddRestaurantVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRestaurantVM.swift; sourceTree = "<group>"; };
 		9AEE27AB2BF0FCDC00F8D6C0 /* AddRestaurantBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRestaurantBuilder.swift; sourceTree = "<group>"; };
+		9AEE27B12BF11E7D00F8D6C0 /* SortOptionPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOptionPill.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 				9AEE27832BEE8E0D00F8D6C0 /* RestourantListItemView.swift */,
 				9AEE279D2BF0E1EC00F8D6C0 /* EmptyListView.swift */,
 				9AEE279F2BF0E9E700F8D6C0 /* StartRateView.swift */,
+				9AEE27B12BF11E7D00F8D6C0 /* SortOptionPill.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				9AEE27982BF0D76500F8D6C0 /* DatePickerView.swift in Sources */,
 				9AEE274C2BEE88A800F8D6C0 /* RestourantReviewAppApp.swift in Sources */,
 				9AEE27862BEE8E1B00F8D6C0 /* ReviewListItemView.swift in Sources */,
+				9AEE27B22BF11E7D00F8D6C0 /* SortOptionPill.swift in Sources */,
 				9AEE27A42BF0F85400F8D6C0 /* ReviewVM.swift in Sources */,
 				9AEE27822BEE8DF900F8D6C0 /* ReviewView.swift in Sources */,
 			);

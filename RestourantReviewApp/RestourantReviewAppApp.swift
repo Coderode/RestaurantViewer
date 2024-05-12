@@ -12,9 +12,10 @@ import CoreData
 
 @main
 struct RestourantReviewAppApp: App {
+
     var body: some Scene {
         WindowGroup {
-            RestourantView()
+            RestaurantsViewWithSorting()
         }
         .modelContainer(restaurantTypesModelContainer)
     }

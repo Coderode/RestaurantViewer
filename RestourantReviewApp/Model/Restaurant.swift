@@ -24,7 +24,7 @@ final class Restaurant: Hashable, Identifiable {
 }
 
 extension Restaurant {
-    func getAverageRating() -> Float {
+    var getAverageRating: Float {
         let ratings : [Int] = self.reviews.map{$0.stars}
         let totalRating = ratings.reduce(0, +)
         if ratings.count < 1 {

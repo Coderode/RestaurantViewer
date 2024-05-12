@@ -49,7 +49,7 @@ struct ReviewView: View {
     
     var listHeaderView: some View {
         HStack(spacing: 20) {
-            StartRateView(rating: self.viewModel.restaurant.getAverageRating())
+            StartRateView(rating: self.viewModel.restaurant.getAverageRating)
             VStack(alignment: .leading, spacing: 5) {
                 Text(self.viewModel.restaurant.name).font(.title3)
                     .foregroundColor(.black)

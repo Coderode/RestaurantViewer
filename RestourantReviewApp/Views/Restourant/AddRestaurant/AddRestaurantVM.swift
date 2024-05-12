@@ -36,7 +36,6 @@ class AddRestaurantVM: ObservableObject {
             // edit restaurant
             restaurant.name = restaurantName
             restaurant.type = restaurantTypes[selectedRestaurantTypeIndex]
-            restaurant.updatedAt = Date()
         } else {
             let newItem = Restaurant(id: UUID(), name: restaurantName, type: restaurantTypes[selectedRestaurantTypeIndex])
             modelContext.insert(newItem)

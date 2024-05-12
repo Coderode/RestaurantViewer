@@ -13,7 +13,7 @@ struct RestourantListItemView: View {
     var body: some View {
         ZStack {
             HStack(alignment: .center, spacing: 10) {
-                StartRateView(rating: self.restaurant.getAverageRating())
+                StartRateView(rating: self.restaurant.getAverageRating)
                 VStack(alignment: .leading, spacing: 5) {
                     Text(restaurant.name).font(.title3)
                         .foregroundColor(.black)
