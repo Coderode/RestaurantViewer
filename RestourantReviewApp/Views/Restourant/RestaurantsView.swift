@@ -8,10 +8,11 @@
 import SwiftUI
 import SwiftData
 
-struct RestaurantsViewWithSorting: View {
-    @Environment(\.modelContext) private var modelContext
-    @State private var sortOrder = SortDescriptor(\Restaurant.name)
-    @State var selectedSortOption: SortOption = .name
+struct RestourantView: View {
+    @ObservedObject var viewModel: RestaurantViewVM
+    init(viewModel: RestaurantViewVM) {
+        self.viewModel = viewModel
+    }
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -20,14 +21,15 @@ struct RestaurantsViewWithSorting: View {
                     .padding(.horizontal, 16)
                 HStack(spacing: 5) {
                     ForEach(SortOption.allCases, id: \.rawValue) { item in
-                        SortOptionPill(sortOption: item, selectedSortOption: $selectedSortOption) {
-                            self.sortOrder = item.sortDescriptor
+                        SortOptionPill(sortOption: item, selectedSortOption: self.$viewModel.selectedSortOption) {
+                            self.viewModel.selectedSortOption = item
+                            self.viewModel.fetchData()
                         }
                     }
                 }
                 .padding(.horizontal, 16)
                 Spacer()
-                RestourantView(sort: sortOrder)
+                restaurantView
                     .frame(maxWidth: .infinity, alignment: .center)
                 Spacer()
             }
@@ -36,7 +38,7 @@ struct RestaurantsViewWithSorting: View {
             .toolbar {
                 ToolbarItem {
                     NavigationLink {
-                        AddRestaurantBuilder().buildForAdd(modelContext: modelContext)
+                        AddRestaurantBuilder().buildForAdd(modelContext: self.viewModel.modelContext, delegate: self.viewModel)
                     } label: {
                         Label("Add Item", systemImage: "plus")
                     }
@@ -44,21 +46,9 @@ struct RestaurantsViewWithSorting: View {
             }
         }
     }
-}
-
-struct RestourantView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var restaurants: [Restaurant]
-    
-    init(sort: SortDescriptor<Restaurant>) {
-        _restaurants = Query(sort: [sort], animation: .easeInOut)
-    }
-    var body: some View {
-        restaurantView
-    }
     private var restaurantView: some View {
         VStack(alignment: .center) {
-            if self.restaurants.count > 0 {
+            if self.viewModel.restaurants.count > 0 {
                 restaurantListView
             } else {
                 EmptyListView(title: "No Data!")
@@ -67,8 +57,8 @@ struct RestourantView: View {
     }
     private var restaurantListView: some View {
         List {
-            ForEach( self.restaurants) { item in
-                ProcessRestourantView(restaurant: item) { restaurant in
+            ForEach( self.viewModel.restaurants) { item in
+                ProcessRestourantView(restaurant: item, modelContext: self.viewModel.modelContext, delegate: self.viewModel, reviewUpdateDelegate: self.viewModel) { restaurant in
                     self.deleteItem(item: restaurant)
                 }
             }
@@ -77,13 +67,12 @@ struct RestourantView: View {
     
     private func deleteItem(item: Restaurant) {
         withAnimation {
-            self.modelContext.delete(item)
+            self.viewModel.deleteItem(item: item)
         }
     }
 }
 
 struct ProcessRestourantView: View {
-    @Environment(\.modelContext) private var modelContext
     enum Action {
         case view
         case edit
@@ -91,6 +80,9 @@ struct ProcessRestourantView: View {
     @State private var isActive = false
     @State private var action: Action?
     let restaurant: Restaurant
+    var modelContext: ModelContext
+    var delegate: AddRestaurantVMDelegate
+    var reviewUpdateDelegate: ReviewVMDelegate
     var didTapDeleteButton : (Restaurant) -> ()
     
     var body: some View {
@@ -116,9 +108,9 @@ struct ProcessRestourantView: View {
     @ViewBuilder
     private var destination: some View {
         if case .edit = action {
-            AddRestaurantBuilder().buildForEdit(restaurant: self.restaurant, modelContext: modelContext)
+            AddRestaurantBuilder().buildForEdit(restaurant: self.restaurant, modelContext: self.modelContext, delegate: self.delegate)
         } else {
-            ReviewViewBuilder().build(restaurant: self.restaurant)
+            ReviewViewBuilder().build(restaurant: self.restaurant, delegate: self.reviewUpdateDelegate)
         }
     }
 }

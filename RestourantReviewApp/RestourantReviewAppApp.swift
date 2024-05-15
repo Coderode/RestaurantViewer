@@ -12,12 +12,15 @@ import CoreData
 
 @main
 struct RestourantReviewAppApp: App {
-
+    let container: ModelContainer
     var body: some Scene {
         WindowGroup {
-            RestaurantsViewWithSorting()
+            RestourantView(viewModel: RestaurantViewVM(modelContext: container.mainContext))
         }
-        .modelContainer(restaurantTypesModelContainer)
+        .modelContainer(container)
+    }
+    init() {
+        self.container = restaurantTypesModelContainer
     }
 }
 

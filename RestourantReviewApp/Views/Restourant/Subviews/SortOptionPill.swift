@@ -9,16 +9,8 @@ import SwiftUI
 
 enum SortOption: String, CaseIterable {
     case name = "Name"
+    case avgRating = "Avg Rating"
     case mostRecentReview = "Most Recent Review"
-    
-    var sortDescriptor: SortDescriptor<Restaurant> {
-        switch self {
-        case .name:
-            return SortDescriptor(\Restaurant.name, order: .forward)
-        case .mostRecentReview:
-            return SortDescriptor(\Restaurant.updatedAt, order: .reverse)
-        }
-    }
 }
 
 struct SortOptionPill: View {

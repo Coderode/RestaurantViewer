@@ -8,12 +8,9 @@
 import SwiftUI
 import SwiftData
 
-struct AddRestourantView: View {
+struct AddRestourantView<VM: AddRestaurantVMProtocol>: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel : AddRestaurantVM
-    private var editorTitle: String {
-        self.viewModel.restaurant == nil ? "Add Restaurant" : "Edit Restaurant"
-    }
+    @ObservedObject var viewModel : VM
     var body: some View {
         ZStack {
             Form {
@@ -35,13 +32,13 @@ struct AddRestourantView: View {
             .toolbar(content: {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("done") {
-                        self.viewModel.save()
+                        self.viewModel.saveData()
                         self.presentationMode.wrappedValue.dismiss()
                     }
                 }
             })
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(editorTitle)
+            .navigationTitle(self.viewModel.title)
         }
     }
 }

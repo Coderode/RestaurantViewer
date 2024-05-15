@@ -8,8 +8,18 @@
 import Foundation
 import SwiftData
 
+protocol RestaurantModel {
+    var id: UUID { get }
+    var name: String { get set }
+    var type: RestaurantType { get set }
+    var reviews: [Review] { get set }
+    var updatedAt: Date { get set }
+    var getAverageRating: Float { get }
+    var mostRecentReviewAddedDate: Date { get }
+}
+
 @Model
-final class Restaurant: Hashable, Identifiable {
+final class Restaurant: Hashable, Identifiable, RestaurantModel {
     @Attribute(.unique) var id = UUID()
     var name: String
     var type: RestaurantType
@@ -31,5 +41,10 @@ extension Restaurant {
             return 0
         }
         return Float(totalRating) / Float(ratings.count)
+    }
+    
+    var mostRecentReviewAddedDate: Date {
+        let dates : [Date] = self.reviews.map{$0.date}
+        return dates.max() ?? self.updatedAt
     }
 }
