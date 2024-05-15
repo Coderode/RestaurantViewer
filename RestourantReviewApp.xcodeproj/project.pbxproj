@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9A8718FE2BF51AD900B42E91 /* RestaurantsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8718FD2BF51AD900B42E91 /* RestaurantsVM.swift */; };
 		9A8719002BF52B6100B42E91 /* EditRestaurantVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8718FF2BF52B6100B42E91 /* EditRestaurantVM.swift */; };
+		9A8719032BF534A700B42E91 /* RestaurantVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8719022BF534A700B42E91 /* RestaurantVMTests.swift */; };
+		9A8719052BF5388A00B42E91 /* AddRestaurantVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8719042BF5388A00B42E91 /* AddRestaurantVMTests.swift */; };
+		9A8719072BF53AED00B42E91 /* EditRestaurantVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8719062BF53AED00B42E91 /* EditRestaurantVMTests.swift */; };
 		9AEE274C2BEE88A800F8D6C0 /* RestourantReviewAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE274B2BEE88A800F8D6C0 /* RestourantReviewAppApp.swift */; };
 		9AEE27522BEE88AB00F8D6C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AEE27512BEE88AB00F8D6C0 /* Assets.xcassets */; };
 		9AEE27552BEE88AB00F8D6C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AEE27542BEE88AB00F8D6C0 /* Preview Assets.xcassets */; };
@@ -56,6 +59,9 @@
 /* Begin PBXFileReference section */
 		9A8718FD2BF51AD900B42E91 /* RestaurantsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsVM.swift; sourceTree = "<group>"; };
 		9A8718FF2BF52B6100B42E91 /* EditRestaurantVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRestaurantVM.swift; sourceTree = "<group>"; };
+		9A8719022BF534A700B42E91 /* RestaurantVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantVMTests.swift; sourceTree = "<group>"; };
+		9A8719042BF5388A00B42E91 /* AddRestaurantVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRestaurantVMTests.swift; sourceTree = "<group>"; };
+		9A8719062BF53AED00B42E91 /* EditRestaurantVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRestaurantVMTests.swift; sourceTree = "<group>"; };
 		9AEE27482BEE88A800F8D6C0 /* RestourantReviewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestourantReviewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEE274B2BEE88A800F8D6C0 /* RestourantReviewAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestourantReviewAppApp.swift; sourceTree = "<group>"; };
 		9AEE27512BEE88AB00F8D6C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,6 +161,9 @@
 		9AEE275D2BEE88AB00F8D6C0 /* RestourantReviewAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				9A8719022BF534A700B42E91 /* RestaurantVMTests.swift */,
+				9A8719042BF5388A00B42E91 /* AddRestaurantVMTests.swift */,
+				9A8719062BF53AED00B42E91 /* EditRestaurantVMTests.swift */,
 				9AEE275E2BEE88AB00F8D6C0 /* RestourantReviewAppTests.swift */,
 			);
 			path = RestourantReviewAppTests;
@@ -427,6 +436,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AEE275F2BEE88AB00F8D6C0 /* RestourantReviewAppTests.swift in Sources */,
+				9A8719052BF5388A00B42E91 /* AddRestaurantVMTests.swift in Sources */,
+				9A8719032BF534A700B42E91 /* RestaurantVMTests.swift in Sources */,
+				9A8719072BF53AED00B42E91 /* EditRestaurantVMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

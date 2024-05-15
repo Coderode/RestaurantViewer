@@ -37,7 +37,7 @@ class AddRestaurantVM: AddRestaurantVMProtocol, ObservableObject {
     }
     
     func saveData() {
-        guard !restaurantName.isEmpty else { return }
+        guard !restaurantName.isEmpty, selectedRestaurantTypeIndex < restaurantTypes.count else { return }
         let newItem = Restaurant(id: UUID(), name: restaurantName, type: restaurantTypes[selectedRestaurantTypeIndex])
         modelContext.insert(newItem)
         self.delegate?.didUpdatedRestaurantTable()

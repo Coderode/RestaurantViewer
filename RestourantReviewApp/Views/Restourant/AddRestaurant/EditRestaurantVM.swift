@@ -39,7 +39,7 @@ class EditRestaurantVM: AddRestaurantVMProtocol, ObservableObject {
     }
     
     func saveData() {
-        guard !restaurantName.isEmpty else { return }
+        guard !restaurantName.isEmpty, selectedRestaurantTypeIndex < restaurantTypes.count  else { return }
         restaurant.name = restaurantName
         restaurant.type = restaurantTypes[selectedRestaurantTypeIndex]
         restaurant.updatedAt = Date()
