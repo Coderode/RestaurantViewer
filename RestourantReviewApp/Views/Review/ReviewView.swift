@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ReviewView: View {
-    @ObservedObject var viewModel: ReviewVM
+struct ReviewView<RestaurantModel: RestaurantModelInterface>: View {
+    @ObservedObject var viewModel: ReviewVM<RestaurantModel>
     var body: some View {
         ZStack {
             VStack {

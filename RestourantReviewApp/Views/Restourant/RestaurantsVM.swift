@@ -8,23 +8,23 @@
 import Foundation
 import SwiftData
 
-class RestaurantViewVM: ObservableObject {
+class RestaurantViewVM<RestaurantModel: RestaurantModelInterface>: ObservableObject {
     @Published var selectedSortOption: SortOption = .name
-    @Published var restaurants: [Restaurant] = []
+    @Published var restaurants: [RestaurantModel] = []
     var modelContext: ModelContext
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
         self.fetchData()
     }
     
-    func deleteItem(item: Restaurant) {
+    func deleteItem(item: RestaurantModel) {
         self.modelContext.delete(item)
         self.fetchData()
     }
     
     func fetchData() {
         do {
-            let descriptor = FetchDescriptor<Restaurant>(sortBy: [SortDescriptor(\.name)])
+            let descriptor = FetchDescriptor<RestaurantModel>(sortBy: [SortDescriptor(\.name)])
             restaurants = try modelContext.fetch(descriptor)
         } catch {
             print("Fetch failed")
@@ -56,8 +56,8 @@ class RestaurantViewVM: ObservableObject {
     }
     
     private func sortDataWithMostRecentReview() {
-        var restaurantsWithReviews: [Restaurant] = self.restaurants.filter{$0.reviews.count > 0}
-        var restaurantsWithNoReviews: [Restaurant] = self.restaurants.filter{$0.reviews.count == 0}
+        var restaurantsWithReviews: [RestaurantModel] = self.restaurants.filter{$0.reviews.count > 0}
+        var restaurantsWithNoReviews: [RestaurantModel] = self.restaurants.filter{$0.reviews.count == 0}
         
         restaurantsWithReviews.sort { item1, item2 in
             return item1.mostRecentReviewAddedDate > item2.mostRecentReviewAddedDate

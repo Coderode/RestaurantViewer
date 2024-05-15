@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-protocol RestaurantModel {
+protocol RestaurantModelInterface: PersistentModel {
     var id: UUID { get }
     var name: String { get set }
     var type: RestaurantType { get set }
@@ -19,7 +19,7 @@ protocol RestaurantModel {
 }
 
 @Model
-final class Restaurant: Hashable, Identifiable, RestaurantModel {
+final class Restaurant: Hashable, Identifiable, RestaurantModelInterface {
     @Attribute(.unique) var id = UUID()
     var name: String
     var type: RestaurantType

@@ -8,16 +8,16 @@
 import Foundation
 import SwiftData
 
-class EditRestaurantVM: AddRestaurantVMProtocol, ObservableObject {
+class EditRestaurantVM<RestaurantModel: RestaurantModelInterface> : AddRestaurantVMProtocol, ObservableObject {
     var title: String
     @Published var restaurantName: String = ""
     @Published var selectedRestaurantTypeIndex: Int = 0
     @Published var restaurantTypes: [RestaurantType] = []
     private var delegate: AddRestaurantVMDelegate?
     private var modelContext: ModelContext
-    @Published var restaurant: Restaurant
+    @Published var restaurant: RestaurantModel
     
-    init(restaurant: Restaurant, modelContext: ModelContext, title: String, delegate: AddRestaurantVMDelegate?) {
+    init(restaurant: RestaurantModel, modelContext: ModelContext, title: String, delegate: AddRestaurantVMDelegate?) {
         self.restaurant = restaurant
         self.modelContext = modelContext
         self.delegate = delegate

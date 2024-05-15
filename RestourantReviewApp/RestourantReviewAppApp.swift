@@ -15,7 +15,7 @@ struct RestourantReviewAppApp: App {
     let container: ModelContainer
     var body: some Scene {
         WindowGroup {
-            RestourantView(viewModel: RestaurantViewVM(modelContext: container.mainContext))
+            RestourantView<Restaurant>(viewModel: RestaurantViewVM(modelContext: container.mainContext))
         }
         .modelContainer(container)
     }

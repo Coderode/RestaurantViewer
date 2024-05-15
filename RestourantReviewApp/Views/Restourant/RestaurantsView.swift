@@ -8,9 +8,9 @@
 import SwiftUI
 import SwiftData
 
-struct RestourantView: View {
-    @ObservedObject var viewModel: RestaurantViewVM
-    init(viewModel: RestaurantViewVM) {
+struct RestourantView<RestaurantModel: RestaurantModelInterface>: View {
+    @ObservedObject var viewModel: RestaurantViewVM<RestaurantModel>
+    init(viewModel: RestaurantViewVM<RestaurantModel>) {
         self.viewModel = viewModel
     }
     var body: some View {
@@ -65,25 +65,25 @@ struct RestourantView: View {
         }
     }
     
-    private func deleteItem(item: Restaurant) {
+    private func deleteItem(item: RestaurantModel) {
         withAnimation {
             self.viewModel.deleteItem(item: item)
         }
     }
 }
 
-struct ProcessRestourantView: View {
+struct ProcessRestourantView<RestaurantModel: RestaurantModelInterface> : View {
     enum Action {
         case view
         case edit
     }
     @State private var isActive = false
     @State private var action: Action?
-    let restaurant: Restaurant
+    let restaurant: RestaurantModel
     var modelContext: ModelContext
     var delegate: AddRestaurantVMDelegate
     var reviewUpdateDelegate: ReviewVMDelegate
-    var didTapDeleteButton : (Restaurant) -> ()
+    var didTapDeleteButton : (RestaurantModel) -> ()
     
     var body: some View {
         NavigationLink(destination: destination, isActive: $isActive) {

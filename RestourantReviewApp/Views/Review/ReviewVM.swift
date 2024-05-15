@@ -12,10 +12,10 @@ import SwiftUI
 protocol ReviewVMDelegate: AnyObject {
     func didUpdatedReview()
 }
-class ReviewVM : ObservableObject {
-    @Published var restaurant: Restaurant
+class ReviewVM<RestaurantModel: RestaurantModelInterface> : ObservableObject {
+    @Published var restaurant: RestaurantModel
     weak var delegate: ReviewVMDelegate?
-    init(restaurant: Restaurant, delegate: ReviewVMDelegate) {
+    init(restaurant: RestaurantModel, delegate: ReviewVMDelegate) {
         self.restaurant = restaurant
         self.delegate = delegate
     }

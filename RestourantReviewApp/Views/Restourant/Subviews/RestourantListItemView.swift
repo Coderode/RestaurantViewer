@@ -8,8 +8,8 @@
 import SwiftUI
 import SwiftData
 
-struct RestourantListItemView: View {
-    var restaurant: Restaurant
+struct RestourantListItemView<RestaurantModel: RestaurantModelInterface>: View {
+    var restaurant: RestaurantModel
     var body: some View {
         ZStack {
             HStack(alignment: .center, spacing: 10) {

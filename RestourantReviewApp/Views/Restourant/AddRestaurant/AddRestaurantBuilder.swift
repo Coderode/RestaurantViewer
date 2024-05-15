@@ -15,7 +15,7 @@ struct AddRestaurantBuilder {
         return AddRestourantView(viewModel: vm)
     }
     
-    func buildForEdit(restaurant: Restaurant, modelContext: ModelContext, delegate: AddRestaurantVMDelegate) -> some View {
+    func buildForEdit<RestaurantModel: RestaurantModelInterface>(restaurant: RestaurantModel, modelContext: ModelContext, delegate: AddRestaurantVMDelegate) -> some View {
         let vm = EditRestaurantVM(restaurant: restaurant, modelContext: modelContext, title: "Edit Restaurant", delegate: delegate)
         return AddRestourantView(viewModel: vm)
     }
